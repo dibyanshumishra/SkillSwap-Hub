@@ -31,19 +31,11 @@ const userSchema = new mongoose.Schema({
   }],
   profileImage: {
     type: String, // multer will save file path
-    default: './public/images',
+    default:"placeholder.webp",
   },
   isVirtual: {
     type: Boolean,
     default: false, // for seeding dummy users
-  },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
   },
 });
 

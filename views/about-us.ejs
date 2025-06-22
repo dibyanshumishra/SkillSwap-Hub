@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SkillSwap-Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#EFE4D2',
+                        navy: '#254D70',
+                        darkBlue: '#131D4F',
+                        brown: '#954C2E'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cream">
+    <div class="min-h-screen">
+          <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f1f2f3] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#131416]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-[#131416] text-lg font-bold leading-tight tracking-[-0.015em]">SkillSwap-Hub</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#131416] text-sm font-medium leading-normal" href="#">Home</a>
+              <a class="text-[#131416] text-sm font-medium leading-normal" href="/users/about-us">About Us</a>
+              <a class="text-[#131416] text-sm font-medium leading-normal" href="#">Services</a>
+              <a class="text-[#131416] text-sm font-medium leading-normal" href="/users/contact">Contact</a>
+            </div>
+          </div>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="bg-darkBlue text-white py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-bold mb-4">
+                    About <span class="text-cream">SkillSwap-Hub
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl">
+                    "Connecting learners and experts in a vibrant community where knowledge flows freely and skills grow exponentially"
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-6 py-16">
+            <!-- Mission Section -->
+            <section class="mb-20">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-4xl font-bold text-navy mb-6">Our Mission</h3>
+                        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                            At <span class="font-semibold text-brown">SkillSwap-Hub</span>, we believe that everyone has something valuable to teach and something important to learn. Our platform bridges the gap between knowledge seekers and skill sharers, creating meaningful connections that transform lives.
+                        </p>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            We're building a world where geographical boundaries don't limit learning opportunities, and where expertise is accessible to all who seek it.
+                        </p>
+                    </div>
+                    <div class="bg-navy rounded-2xl p-8">
+                        <!-- Image placeholder - replace src with your actual image -->
+                        <img src="/placeholder.svg" alt="Team collaboration at SkillSwap-Hub" class="w-full h-64 object-cover rounded-lg bg-gray-200 border-2 border-dashed border-gray-400">
+                        <p class="text-center text-cream mt-4 text-sm">Our collaborative workspace</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Values Section -->
+            <section class="mb-20">
+                <h3 class="text-4xl font-bold text-center text-navy mb-12">Our Core Values</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-brown">
+                        <h4 class="text-2xl font-bold text-darkBlue mb-4">Community First</h4>
+                        <p class="text-gray-700">We prioritize building genuine connections and fostering a supportive learning environment for everyone.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-navy">
+                        <h4 class="text-2xl font-bold text-darkBlue mb-4">Quality Learning</h4>
+                        <p class="text-gray-700">We ensure high-quality educational experiences through verified experts and structured learning paths.</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-8 shadow-lg border-l-4 border-darkBlue">
+                        <h4 class="text-2xl font-bold text-darkBlue mb-4">Accessibility</h4>
+                        <p class="text-gray-700">We make skill development accessible to everyone, regardless of background or financial situation.</p>
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <!-- Newsletter Signup -->
+            <section class="text-center">
+                <div class="bg-cream border-2 border-brown rounded-2xl p-12">
+                    <h3 class="text-3xl font-bold text-darkBlue mb-4">Stay Updated</h3>
+                    <p class="text-gray-700 mb-8 text-lg">
+                        Subscribe to our newsletter and be the first to know about new features and opportunities on <span class="font-semibold text-brown">SkillSwap-Hub</span>.
+                    </p>
+                    <form class="max-w-md mx-auto flex gap-4">
+                        <input type="email" placeholder="Enter your email" required 
+                               class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-navy focus:border-transparent">
+                        <button type="submit" 
+                                class="bg-navy hover:bg-darkBlue text-white font-bold px-6 py-3 rounded-lg transition duration-300">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-darkBlue text-white py-12 mt-20">
+            <div class="container mx-auto px-6 text-center">
+                <h4 class="text-2xl font-bold mb-4">
+                    <span class="text-cream">SkillSwap-Hub</span>
+                </h4>
+                <p class="text-gray-300 mb-6">Empowering learners, connecting experts, building futures.</p>
+                <div class="flex justify-center space-x-8 text-sm">
+                    <a href="#" class="hover:text-cream transition duration-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-cream transition duration-300">Terms of Service</a>
+                    <a href="#" class="hover:text-cream transition duration-300">Support</a>
+                </div>
+                <p class="text-gray-400 text-sm mt-6">&copy; 2025 SkillSwap-Hub. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
