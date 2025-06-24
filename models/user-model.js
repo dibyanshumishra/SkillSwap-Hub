@@ -22,12 +22,10 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   skillsOffered: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Skill',
+    type:String,
   }],
   skillsWanted: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Skill',
+    type:String,
   }],
   profileImage: {
     type: String, // multer will save file path

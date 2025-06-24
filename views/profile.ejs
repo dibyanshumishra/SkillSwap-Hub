@@ -32,8 +32,11 @@
             <h2 class="text-[#121417] text-lg font-bold leading-tight tracking-[-0.015em]">SkillSwap-Hub</h2>
           </div>
           <div class="flex flex-1 justify-end gap-8">
-            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10">
-                <img class="w-full h-full object-cover" src="/images/uploads/placeholder.webp" alt="">
+            <div class="flex items-center gap-9">
+              <a class="text-[#121417] text-sm bg-red-500 font-medium p-3 rounded-md leading-normal" href="/users/logout">Logout</a>
+            </div>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2">
+                <img class="w-full h-full object-cover" src="<%= user.profileImage %>" alt="">
             </div>
           </div>
         </header>
@@ -43,25 +46,24 @@
             <div class="flex flex-wrap justify-between gap-3 p-4">
               <p class="text-[#121417] tracking-light text-[32px] font-bold leading-tight min-w-72 underline decoration-dashed">Complete your profile</p>
             </div>
+          <form autocomplete="off" action="/users/profile/home" method="post" enctype="multipart/form-data">
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-[#121417] text-base font-medium leading-normal pb-2">Name</p>
-                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" name="name"/>
+                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" name="name" placeholder="<%= user.name %>" disabled/>
               </label>
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-[#121417] text-base font-medium leading-normal pb-2">Email</p>
-                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" name="email"/>
+                <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" name="email" placeholder="<%= user.email %>" disabled/>
               </label>
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-[#121417] text-base font-medium leading-normal pb-2">Password</p>
                 <input
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" placeholder="<%= user.password %>" disabled/>
               </label>
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
@@ -78,16 +80,14 @@
                 <input
                   placeholder="City, State"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal"
-                  name="location"
-                />
+                  name="location"/>
               </label>
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-[#121417] text-base font-medium leading-normal pb-2">Skill Offered</p>
                 <select
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 bg-[image:--select-button-svg] placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal"
-                >
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 bg-[image:--select-button-svg] placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" name="skillsOffered">
                   <option value="one">Select a skill</option>
                   <option value="two">two</option>
                   <option value="three">three</option>
@@ -101,14 +101,10 @@
                   <p class="text-[#121417] text-lg font-bold leading-tight tracking-[-0.015em] max-w-[480px] text-center">Upload Profile Image</p>
                   <p class="text-[#121417] text-sm font-normal leading-normal max-w-[480px] text-center">Drag and drop or click to upload</p>
                 </div>
-                <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f1f2f4] text-[#121417] text-sm font-bold leading-normal tracking-[0.015em]">
-                <form autocomplete="off" action="/upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="image">
-                <input class="px-3 py-3 outline-none rounded-md bg-blue-500 " type="submit" value="Upload">
-                </form>
-                </button>
+                  <input type="file" name="profileImage">
               </div>
             </div>
+      
             <div class="flex px-4 py-3 justify-end">
               <button
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#1f4179] text-white text-sm font-bold leading-normal tracking-[0.015em]"
@@ -116,6 +112,7 @@
                 Continue
               </button>
             </div>
+          </form>
           </div>
         </div>
       </div>
