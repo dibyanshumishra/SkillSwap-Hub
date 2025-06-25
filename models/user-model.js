@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -22,9 +21,6 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   skillsOffered: [{
-    type:String,
-  }],
-  skillsWanted: [{
     type:String,
   }],
   profileImage: {

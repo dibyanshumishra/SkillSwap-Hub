@@ -1,4 +1,5 @@
 const userModel = require("../models/user-model");
+const courseModel = require("../models/course-model");
 const adminModel = require("../models/admin-model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -79,6 +80,21 @@ module.exports.isLogin2 = async(req,res)=> {
     if(!user) return res.status(402).send("User not found");
 
     res.render("home", { user });
+}
+
+module.exports.myCourse = async(req,res)=> {
+    let {title, about, price, duration , courseImage} = req.body;
+    let email = req.user.email;
+    let user = await userModel.findOne({email});
+
+    let course = await courseModel.create({
+        title,
+        about,
+        price,
+        duration,
+        courseImage,
+    });
+    res.render("myCourse",{ course });
 }
 
 module.exports.islogOut = async(req,res) => {
