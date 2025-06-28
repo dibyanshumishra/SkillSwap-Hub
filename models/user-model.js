@@ -20,9 +20,6 @@ const userSchema = new mongoose.Schema({
   location: {
     type: String,
   },
-  skillsOffered: [{
-    type:String,
-  }],
   profileImage: {
     type: String, // multer will save file path
     default:"placeholder.webp",
@@ -31,6 +28,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false, // for seeding dummy users
   },
+  courseIDs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'course'
+  }],
 });
 
 module.exports = mongoose.model('user', userSchema);

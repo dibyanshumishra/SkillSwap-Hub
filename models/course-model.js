@@ -4,18 +4,20 @@ const courseSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
   },
   about: {
     type: String,
     required: true,
   },
   price: {
-    type: String,
+    type: Number,
   },
   duration: {
-    type: String,
+    type: Number,
   },
+  skillsOffered: [{
+    type:String,
+  }],
   courseImage: {
     type: String,
     default:"placeholder.webp",
@@ -24,6 +26,11 @@ const courseSchema = new mongoose.Schema({
     type: Boolean,
     default: false, // for seeding dummy users
   },
+  userID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true
+  }
 });
 
 module.exports = mongoose.model('course', courseSchema);

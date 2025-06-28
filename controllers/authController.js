@@ -83,18 +83,48 @@ module.exports.isLogin2 = async(req,res)=> {
 }
 
 module.exports.myCourse = async(req,res)=> {
-    let {title, about, price, duration , courseImage} = req.body;
+    let {title, about, price, duration,skillsOffered} = req.body;
     let email = req.user.email;
     let user = await userModel.findOne({email});
+
+    let courseImage = req.file ? req.file.filename : null;
 
     let course = await courseModel.create({
         title,
         about,
         price,
         duration,
+        skillsOffered,
         courseImage,
+        userID : user._id,
     });
-    res.render("myCourse",{ course });
+
+    user.courseIDs.push(course._id);
+    await user.save();
+
+    let courses = await courseModel.find({ userID: user._id });
+    res.render("myCourse",{ courses, user });
+}
+
+module.exports.updateCourse =  async (req, res) => {
+    let { title, about, price, duration, skillsOffered } = req.body;
+    let updateData = {
+        title,
+        about,
+        price,
+        duration,
+        skillsOffered,
+    };
+    if (req.file) {
+        updateData.courseImage = req.file.filename;
+    }
+    let course = await courseModel.findOneAndUpdate(
+        { _id: req.params.id, userID: req.user._id },
+        updateData,
+        { new: true }
+    );
+    let user = await userModel.findOne({ email: req.user.email });
+    res.redirect("/users/myCourse");
 }
 
 module.exports.islogOut = async(req,res) => {

@@ -47,15 +47,16 @@
         <div class="px-40 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4">
-              <p class="text-[#121417] tracking-light text-[32px] font-bold leading-tight min-w-72">Create a New Course</p>
+              <p class="text-[#121417] tracking-light text-[32px] font-bold leading-tight min-w-72">Edit your course</p>
             </div>
-        <form action="/users/myCourse" method="post" enctype="multipart/form-data">
+        <form action="/users/myCourse/<%= course._id %>" method="post" enctype="multipart/form-data">
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <input
-                  placeholder="Course Title"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal"
+                  placeholder="Title"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[black] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal"
                   name="title"
+                  value="<%= course.title %>"
                 />
               </label>
             </div>
@@ -63,7 +64,9 @@
               <label class="flex flex-col min-w-40 flex-1">
                 <textarea
                   placeholder="Course Description"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] min-h-36 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" name="about"></textarea>
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] min-h-36 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal" name="about">
+                  <%= course.about %>
+                </textarea>
               </label>
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
@@ -71,7 +74,7 @@
                 <input
                   placeholder="Price (in terms of $ , e.g- 40)"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal"
-                  name="price"/>
+                  name="price" value="<%= course.price %>"/>
               </label>
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
@@ -79,7 +82,7 @@
                 <input
                   placeholder="Duration (in terms of weeks, e.g - 4)"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121417] focus:outline-0 focus:ring-0 border border-[#dde0e4] bg-white focus:border-[#dde0e4] h-14 placeholder:text-[#677283] p-[15px] text-base font-normal leading-normal"
-                  name="duration"
+                  name="duration" value="<%= course.duration %>"
                 />
               </label>
             </div>
