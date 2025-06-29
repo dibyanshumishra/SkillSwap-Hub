@@ -36,7 +36,8 @@ router.post("/home",isLogin1);
 
 router.get("/home",isLoggedIn,async(req,res)=> {
     let user = await userModel.findOne({email:req.user.email});
-    res.render("home",{ user });
+    let courses = await courseModel.find().populate('instructorID');
+    res.render("home",{ user, courses });
 });
 
 router.get("/course",isLoggedIn, async(req,res)=> {
@@ -54,11 +55,24 @@ router.get("/myCourse",isLoggedIn,async(req,res)=> {
 
 router.get("/myCourse/:id", isLoggedIn, async (req, res) => {
     let user = await userModel.findOne({ email: req.user.email });
-    let course = await courseModel.findOne({ _id: req.params.id });
+    let course = await courseModel.findOne({ _id: req.params.id }).populate('instructorID');
     res.render("course-id", { user, course });
 });
 
 router.post("/myCourse/:id", isLoggedIn, upload.single('courseImage'),updateCourse);
+
+router.get("/myCourse/delete/:id",isLoggedIn,async(req,res) => {
+    let deleteCourse = await courseModel.findOneAndDelete({ _id: req.params.id });
+    res.redirect("/users/myCourse");
+})
+
+router.get("/instructor/:instructorId/course/:courseId",isLoggedIn,async(req,res)=> {
+    let instructor = await userModel.findById(req.params.instructorId);
+    let user = await userModel.findOne({ email: req.user.email });
+    //let instructorCourses = await courseModel.find({ instructorID: req.params.id });
+    let instructorCourse = await courseModel.findOne({ _id: req.params.courseId, instructorID: instructor._id });
+    res.render("instructor",{ instructor, instructorCourse, user });
+})
 
 router.get("/logout",islogOut);
 

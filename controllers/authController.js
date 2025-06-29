@@ -45,13 +45,14 @@ module.exports.isLogin1 = async(req,res) => {
 
         if(!user) return res.status(402).send("User not found");
 
-        bcrypt.compare(password,user.password, function(err, result) {
+        bcrypt.compare(password,user.password, async(err, result) => {
             if(!result) return res.status(403).send("Invalid password!");
             if(result) {
                 let token = generateToken(user);
                 res.cookie("token",token);
 
-                res.render("home",{ user });
+                let courses = await courseModel.find().populate('instructorID');
+                res.render("home",{ user, courses });
             }
         });
     } catch(err) {
@@ -79,11 +80,13 @@ module.exports.isLogin2 = async(req,res)=> {
 
     if(!user) return res.status(402).send("User not found");
 
-    res.render("home", { user });
+    let courses = await courseModel.find().populate('instructorID');
+    
+    res.render("home", { user,courses });
 }
 
 module.exports.myCourse = async(req,res)=> {
-    let {title, about, price, duration,skillsOffered} = req.body;
+    let {title, about, price, duration,skillsOffered, instructorID} = req.body;
     let email = req.user.email;
     let user = await userModel.findOne({email});
 
@@ -97,6 +100,7 @@ module.exports.myCourse = async(req,res)=> {
         skillsOffered,
         courseImage,
         userID : user._id,
+        instructorID,
     });
 
     user.courseIDs.push(course._id);

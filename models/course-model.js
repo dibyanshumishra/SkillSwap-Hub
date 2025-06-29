@@ -26,10 +26,14 @@ const courseSchema = new mongoose.Schema({
     type: Boolean,
     default: false, // for seeding dummy users
   },
-  userID: {
+  instructorID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true
+  },
+  userID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
   }
 });
 
