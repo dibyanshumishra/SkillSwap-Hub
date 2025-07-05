@@ -1,0 +1,1 @@
+This is a website called "SkillSwap-Hub" , it is a platform to exchange your skill with another , like a bater system , no money included. Just conversation between two people via webRTC or web-sockets, which is there to be made yet.
