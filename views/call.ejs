@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700"
+    />
+
+    <title>Video Call - SkillSwap-Hub</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#EFE4D2',
+                        navy: '#254D70',
+                        darkBlue: '#131D4F',
+                        brown: '#954C2E'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 h-screen overflow-hidden" style="font-family: 'Spline Sans', 'Noto Sans', sans-serif;">
+    <!-- Main Video Call Container -->
+    <main class="h-screen flex flex-col relative">
+        <!-- Header Section -->
+        <header class="bg-white rounded-b-2xl shadow-sm px-6 py-4 mx-4 mt-4 z-20 relative">
+                <!-- Meeting Info -->
+                <div class="flex-1 text-center">
+                    <h1 class="text-xl font-bold text-darkBlue"><%= instructorCourse.title %></h1>
+                </div>
+            </div>
+        </header>
+
+        <!-- Video Call Content -->
+        <section class="flex-1 p-4 relative">
+            <!-- Main Video Area -->
+            <div class="w-full h-full relative">
+                <div class="bg-gray-800 rounded-2xl overflow-hidden h-full shadow-2xl">
+                    <!-- Video Call Interface -->
+                    <div id="video-call-div" class="mt-8 p-4 absolute rounded-lg gap-4 w-full h-full hidden">
+                        <video id="local-video" class="absolute m-4 rounded bg-white max-w-[30%] max-h-[30%] border-2 z-10" autoplay muted playsinline></video>
+                        <video id="remote-video" class="rounded bg-black w-[100%] h-[100%]" autoplay playsinline></video>
+                        <div id="call-action-div" class="flex gap-2 items-center absolute left-1/2 bottom-8 -translate-x-1/2 z-20">
+                            <!-- Video Toggle -->
+                            <button id="videoToggle" class="w-14 h-14 bg-blue-500 hover:bg-blue-600 rounded-2xl flex items-center justify-center transition duration-300 group" aria-label="Toggle video" onclick="muteVideo()">
+                                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
+                                </svg>
+                        </button>
+
+                        <!-- Microphone Toggle -->
+                        <button id="micToggle" class="w-14 h-14 bg-blue-500 hover:bg-blue-600 rounded-2xl flex items-center justify-center transition duration-300 group" aria-label="Toggle microphone" onclick="muteAudio()">
+                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        </div>
+                    </div>
+
+                    <!-- Default Video Area -->
+                    <div id="default-video-area" class="relative h-full bg-gray-900 flex items-center justify-center">
+                        <div class="text-center">
+                            <input class="text-black text-lg font-medium" type="text" placeholder="Enter the instructor's name" id="username-input"/>
+                            <div class="flex gap-2">
+                                <button class="mt-4 bg-navy hover:bg-darkBlue text-white px-6 py-3 rounded-lg transition duration-300 font-medium" onclick="sendUsername()">
+                                Send
+                                </button>
+                                <button id="startCallBtn" class="mt-4 bg-navy hover:bg-darkBlue text-white px-6 py-3 rounded-lg transition duration-300 font-medium" onclick="startCall()">
+                                Start Call
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Video Quality Indicator -->
+                        <div class="absolute top-4 right-4">
+                            <div id="qualityIndicator" class="bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2">
+                                <p class="text-white text-xs font-medium">HD 720p</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Control Bar -->
+        <footer class="px-4 pb-4 z-20 relative">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg px-8 py-4">
+                <div class="flex items-center justify-center space-x-6">
+
+                <!-- Call Duration -->
+                <div class="text-center mt-3">
+                    <p class="text-sm text-gray-600 font-medium">
+                        <span class="inline-flex items-center" id="callDuration">
+                            <span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
+                            Ready to call
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="../webRTC/sender/sender.js"></script>
+    <script>
+        document.getElementById('startCallBtn').addEventListener('click', function() {
+            document.getElementById('default-video-area').classList.add('hidden');
+            document.getElementById('video-call-div').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

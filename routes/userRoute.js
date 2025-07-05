@@ -69,11 +69,18 @@ router.get("/myCourse/delete/:id",isLoggedIn,async(req,res) => {
 router.get("/instructor/:instructorId/course/:courseId",isLoggedIn,async(req,res)=> {
     let instructor = await userModel.findById(req.params.instructorId);
     let user = await userModel.findOne({ email: req.user.email });
-    //let instructorCourses = await courseModel.find({ instructorID: req.params.id });
     let instructorCourse = await courseModel.findOne({ _id: req.params.courseId, instructorID: instructor._id });
     res.render("instructor",{ instructor, instructorCourse, user });
 })
 
 router.get("/logout",islogOut);
 
+router.get("/call/:instructorId/:courseId",isLoggedIn,async(req,res)=> {
+    let instructor = await userModel.findById(req.params.instructorId);
+    let instructorCourse = await courseModel.findOne({ _id: req.params.courseId, instructorID: instructor._id });
+    res.render("call", { instructorCourse });
+})
+router.get("/call1",isLoggedIn,(req,res)=> {
+    res.render("call1");
+})
 module.exports = router;
